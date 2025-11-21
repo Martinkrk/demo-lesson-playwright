@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { LoginPage } from '../pages/login-page'
 import { faker } from '@faker-js/faker/locale/ar'
-import { PASSWORD, USERNAME } from '../../config/env-data'
+import { PASSWORD, SERVICE_URL, USERNAME } from '../../config/env-data'
 
 let authPage: LoginPage
 
@@ -10,22 +10,34 @@ test.beforeEach(async ({ page }) => {
   await authPage.open()
 })
 
-test('signIn button disabled when incorrect data inserted', async ({}) => {
+test('3.0 signIn button disabled when incorrect data inserted', async ({}) => {
   await authPage.usernameField.fill(faker.lorem.word(2))
   await authPage.passwordField.fill(faker.lorem.word(7))
   await expect(authPage.signInButton).toBeDisabled()
 })
 
-test('error message displayed when incorrect credentials used', async ({}) => {
-  // implement test
-})
-
-test('login with correct credentials and verify order creation page', async ({}) => {
+test('3.1 login and verify order creation page', async ({}) => {
   const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
-  await expect(orderCreationPage.statusButton).toBeVisible()
-  // verify at least few elements on the order creation page
+  await orderCreationPage.verifyPage();
 })
 
-test('login and create order', async ({}) => {
-  // implement test
+test('3.2 login and create order', async ({}) => {
+  const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
+  await orderCreationPage.createOrder()
+  await orderCreationPage.isPopupVisible(true)
+})
+
+test('3.3 login and input incorrect username and phone', async ({}) => {
+  const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
+  await orderCreationPage.nameField.fill(faker.lorem.word(1))
+  await orderCreationPage.phoneField.fill(faker.lorem.word(5))
+
+  await expect(orderCreationPage.nameFieldError).toBeVisible()
+  await expect(orderCreationPage.phoneFieldError).toBeVisible()
+})
+
+test('3.4 login and logout', async ({}) => {
+  const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
+  const loginPage = await orderCreationPage.signOut();
+  expect(loginPage.page.url()).toBe(`${SERVICE_URL}signin`)
 })
