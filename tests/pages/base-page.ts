@@ -9,6 +9,6 @@ export abstract class BasePage {
   protected constructor(page: Page) {
     this.page = page
     this.url = SERVICE_URL
-    this.footer = page.locator('.Footer');
+    this.footer = page.locator('.Footer')
   }
 }

@@ -20,7 +20,7 @@ test('3.0 signIn button disabled when incorrect data inserted', async ({}) => {
 
 test('3.1 login and verify order creation page', async ({}) => {
   const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
-  await orderCreationPage.verifyPage();
+  await orderCreationPage.verifyPage()
 })
 
 test('3.2 login and create order', async ({}) => {
@@ -40,7 +40,7 @@ test('3.3 login and input incorrect username and phone', async ({}) => {
 
 test('3.4 login and logout', async ({}) => {
   const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
-  const loginPage = await orderCreationPage.signOut();
+  const loginPage = await orderCreationPage.signOut()
   expect(loginPage.page.url()).toBe(`${SERVICE_URL}signin`)
 })
 

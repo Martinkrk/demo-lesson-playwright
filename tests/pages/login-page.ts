@@ -23,7 +23,7 @@ export class LoginPage extends BasePage {
     await this.passwordField.fill(password)
     await this.signInButton.click()
 
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('networkidle')
     return new OrderPage(this.page)
   }
 }

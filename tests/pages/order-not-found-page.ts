@@ -11,7 +11,7 @@ export class OrderNotFoundPage extends AuthorizedPage {
 
   async open(orderId = -1) {
     await this.page.goto(`${this.url}order/${orderId}`)
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('networkidle')
     return new OrderNotFoundPage(this.page)
   }
 

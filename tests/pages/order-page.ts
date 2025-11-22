@@ -36,7 +36,7 @@ export class OrderPage extends AuthorizedPage {
   }
 
   async isPopupVisible(visible = true) {
-    await expect(this.orderPopup).toHaveClass(visible ? /popup_opened/ : /undefined/);
+    await expect(this.orderPopup).toHaveClass(visible ? /popup_opened/ : /undefined/)
   }
 
   async createOrder() {
@@ -49,7 +49,7 @@ export class OrderPage extends AuthorizedPage {
   async signOut() {
     await this.logoutButton.click()
 
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('networkidle')
     return new LoginPage(this.page)
   }
 }
