@@ -1,5 +1,5 @@
 import { BasePage } from './base-page'
-import { expect, Locator, Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test'
 import { LoginPage } from './login-page'
 
 export class AuthorizedPage extends BasePage {

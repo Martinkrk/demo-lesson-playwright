@@ -1,4 +1,4 @@
-import { Locator, type Page } from '@playwright/test'
+import { expect, Locator, type Page } from '@playwright/test'
 import { OrderPage } from './order-page'
 import { BasePage } from './base-page'
 
@@ -25,5 +25,9 @@ export class LoginPage extends BasePage {
 
     await this.page.waitForLoadState('networkidle')
     return new OrderPage(this.page)
+  }
+
+  async verifyPage() {
+    await expect(this.signInButton).toBeVisible()
   }
 }

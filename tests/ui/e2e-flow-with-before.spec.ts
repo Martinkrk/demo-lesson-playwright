@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { LoginPage } from '../pages/login-page'
 import { faker } from '@faker-js/faker/locale/ar'
-import { PASSWORD, SERVICE_URL, USERNAME } from '../../config/env-data'
+import { PASSWORD, USERNAME } from '../../config/env-data'
 import { OrderNotFoundPage } from '../pages/order-not-found-page'
 import { OrderFoundPage } from '../pages/order-found-page'
 
@@ -41,7 +41,7 @@ test('3.3 login and input incorrect username and phone', async ({}) => {
 test('3.4 login and logout', async ({}) => {
   const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
   const loginPage = await orderCreationPage.signOut()
-  expect(loginPage.page.url()).toBe(`${SERVICE_URL}signin`)
+  await loginPage.verifyPage()
 })
 
 test('3.5 search for nonexisting order', async ({}) => {
