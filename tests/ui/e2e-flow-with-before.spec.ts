@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test'
 import { LoginPage } from '../pages/login-page'
 import { faker } from '@faker-js/faker/locale/ar'
 import { PASSWORD, SERVICE_URL, USERNAME } from '../../config/env-data'
+import { OrderNotFoundPage } from '../pages/order-not-found-page'
+import { OrderFoundPage } from '../pages/order-found-page'
 
 let authPage: LoginPage
 
@@ -40,4 +42,18 @@ test('3.4 login and logout', async ({}) => {
   const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
   const loginPage = await orderCreationPage.signOut();
   expect(loginPage.page.url()).toBe(`${SERVICE_URL}signin`)
+})
+
+test('3.5 search for nonexisting order', async ({}) => {
+  const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
+  const orderNotFoundPage = new OrderNotFoundPage(orderCreationPage.page)
+  await orderNotFoundPage.open()
+  await orderNotFoundPage.verifyPage()
+})
+
+test('3.6 search for existing order', async ({}) => {
+  const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
+  const orderFoundPage = new OrderFoundPage(orderCreationPage.page)
+  await orderFoundPage.open()
+  await orderFoundPage.verifyPage()
 })

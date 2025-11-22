@@ -1,28 +1,25 @@
 import { expect, Locator, Page } from '@playwright/test'
 import { faker } from '@faker-js/faker/locale/ar'
-import { SERVICE_URL } from '../../config/env-data'
 import { LoginPage } from './login-page'
+import { AuthorizedPage } from './authorized-page'
 
-export class OrderPage {
-  readonly page: Page
+export class OrderPage extends AuthorizedPage {
   readonly statusButton: Locator
   readonly nameField: Locator
   readonly phoneField: Locator
   readonly commentField: Locator
   readonly orderButton: Locator
-  readonly logoutButton: Locator
   readonly orderPopup: Locator
   readonly nameFieldError: Locator
   readonly phoneFieldError: Locator
 
   constructor(page: Page) {
-    this.page = page
+    super(page)
     this.statusButton = page.getByTestId('openStatusPopup-button')
     this.nameField = page.getByTestId('username-input')
     this.phoneField = page.getByTestId('phone-input')
     this.commentField = page.getByTestId('comment-input')
     this.orderButton = page.getByTestId('createOrder-button')
-    this.logoutButton = page.getByTestId('logout-button')
     this.orderPopup = page.getByTestId('orderSuccessfullyCreated-popup').locator('..')
     this.nameFieldError = page.getByTestId('username-input-error')
     this.phoneFieldError = page.getByTestId('phone-input-error')
@@ -51,6 +48,8 @@ export class OrderPage {
 
   async signOut() {
     await this.logoutButton.click()
+
+    await this.page.waitForLoadState('networkidle');
     return new LoginPage(this.page)
   }
 }
