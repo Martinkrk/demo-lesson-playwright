@@ -26,7 +26,7 @@ test('3.1 login and verify order creation page', async ({}) => {
 test('3.2 login and create order', async ({}) => {
   const orderCreationPage = await authPage.signIn(USERNAME, PASSWORD)
   await orderCreationPage.createOrder()
-  await orderCreationPage.isPopupVisible(true)
+  await orderCreationPage.verifyPopupVisible(true)
 })
 
 test('3.3 login and input incorrect username and phone', async ({}) => {
