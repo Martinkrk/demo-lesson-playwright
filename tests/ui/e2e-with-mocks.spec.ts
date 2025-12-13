@@ -1,13 +1,11 @@
-import { test } from '@playwright/test'
+import { test } from '../fixtures/delivery.fixture'
 import { LoginPage } from '../pages/login-page'
 import { OrderFoundPage } from '../pages/order-found-page'
 import { OrderPage } from '../pages/order-page'
 import { OrderNotFoundPage } from '../pages/order-not-found-page'
 
-const jwt =
-  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZXJzdG1hbiIsImV4cCI6MTc2NTQ3OTgxNSwiaWF0IjoxNzY1NDYxODE1fQ.LSVyInkMUAOvT8cxEVuZzC71kNwPLt9FpPcKPxXRMPAkzf-YImNcZz6DMXXsIp4bJhvTMStubfIMvw7-G1TaNg'
 
-test('4.0 (mock) Create order', async ({ context }) => {
+test('4.0 (mock) Create order', async ({ context, jwt }) => {
   const order = {
     status: 'OPEN',
     courierId: null,
@@ -42,7 +40,7 @@ test('4.0 (mock) Create order', async ({ context }) => {
   await orderPage.verifyOrderId(String(order.id))
 })
 
-test('4.1 (mock) Find order [OPEN]', async ({ context }) => {
+test('4.1 (mock) Find order [OPEN]', async ({ context, jwt }) => {
   const order = {
     status: 'OPEN',
     courierId: null,
@@ -78,7 +76,7 @@ test('4.1 (mock) Find order [OPEN]', async ({ context }) => {
   await foundPage.verifyStatus(order.status)
 })
 
-test('4.2 (mock) Find order [DELIVERED]', async ({ context }) => {
+test('4.2 (mock) Find order [DELIVERED]', async ({ context, jwt }) => {
   const order = {
     status: 'DELIVERED',
     courierId: null,
@@ -114,7 +112,7 @@ test('4.2 (mock) Find order [DELIVERED]', async ({ context }) => {
   await foundPage.verifyStatus(order.status)
 })
 
-test('4.3 (mock) Find order with response 500', async ({ context }) => {
+test('4.3 (mock) Find order with response 500', async ({ context, jwt }) => {
   const order = {
     status: 'OPEN',
     courierId: null,
