@@ -4,7 +4,8 @@ import { OrderFoundPage } from '../pages/order-found-page'
 import { OrderPage } from '../pages/order-page'
 import { OrderNotFoundPage } from '../pages/order-not-found-page'
 
-const jwt = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZXJzdG1hbiIsImV4cCI6MTc2NTQ3OTgxNSwiaWF0IjoxNzY1NDYxODE1fQ.LSVyInkMUAOvT8cxEVuZzC71kNwPLt9FpPcKPxXRMPAkzf-YImNcZz6DMXXsIp4bJhvTMStubfIMvw7-G1TaNg'
+const jwt =
+  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZXJzdG1hbiIsImV4cCI6MTc2NTQ3OTgxNSwiaWF0IjoxNzY1NDYxODE1fQ.LSVyInkMUAOvT8cxEVuZzC71kNwPLt9FpPcKPxXRMPAkzf-YImNcZz6DMXXsIp4bJhvTMStubfIMvw7-G1TaNg'
 
 test('4.0 (mock) Create order', async ({ context }) => {
   const order = {

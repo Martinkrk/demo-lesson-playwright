@@ -27,7 +27,9 @@ export class OrderFoundPage extends AuthorizedPage {
     if (status === 'OPEN') {
       await expect(this.statusOpen.locator('span')).toContainClass('status-list__status_active')
     } else if (status === 'DELIVERED') {
-      await expect(this.statusDelivered.locator('span')).toContainClass('status-list__status_active')
+      await expect(this.statusDelivered.locator('span')).toContainClass(
+        'status-list__status_active',
+      )
     }
   }
 }
