@@ -4,7 +4,6 @@ import { OrderFoundPage } from '../pages/order-found-page'
 import { OrderPage } from '../pages/order-page'
 import { OrderNotFoundPage } from '../pages/order-not-found-page'
 
-
 test('4.0 (mock) Create order', async ({ context, jwt }) => {
   const order = {
     status: 'OPEN',
