@@ -4,9 +4,6 @@ import { LoginPage } from './login-page'
 import { AuthorizedPage } from './authorized-page'
 
 export class OrderPage extends AuthorizedPage {
-  readonly statusButton: Locator
-  readonly orderSearchInput: Locator
-  readonly orderSearchButton: Locator
   readonly nameField: Locator
   readonly phoneField: Locator
   readonly commentField: Locator
@@ -18,9 +15,6 @@ export class OrderPage extends AuthorizedPage {
 
   constructor(page: Page) {
     super(page)
-    this.statusButton = page.getByTestId('openStatusPopup-button')
-    this.orderSearchInput = page.getByTestId('searchOrder-input')
-    this.orderSearchButton = page.getByTestId('searchOrder-submitButton')
     this.nameField = page.getByTestId('username-input')
     this.phoneField = page.getByTestId('phone-input')
     this.commentField = page.getByTestId('comment-input')
@@ -29,6 +23,10 @@ export class OrderPage extends AuthorizedPage {
     this.orderPopupSpan = this.orderPopup.locator('span')
     this.nameFieldError = page.getByTestId('username-input-error')
     this.phoneFieldError = page.getByTestId('phone-input-error')
+  }
+
+  async open() {
+    await this.page.goto(this.url)
   }
 
   async getOrderIdByPopup() {

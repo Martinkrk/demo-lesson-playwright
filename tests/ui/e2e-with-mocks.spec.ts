@@ -68,9 +68,9 @@ test('4.1 (mock) Find order [OPEN]', async ({ context }) => {
   })
 
   await orderPage.statusButton.click()
-  await orderPage.orderSearchInput.fill(String(order.id))
+  await orderPage.searchOrderInput.fill(String(order.id))
   const findOrderResponse = page.waitForResponse('**/orders/*')
-  await orderPage.orderSearchButton.click()
+  await orderPage.searchOrderButton.click()
   await findOrderResponse
 
   await foundPage.verifyPage()
@@ -104,9 +104,9 @@ test('4.2 (mock) Find order [DELIVERED]', async ({ context }) => {
   })
 
   await orderPage.statusButton.click()
-  await orderPage.orderSearchInput.fill(String(order.id))
+  await orderPage.searchOrderInput.fill(String(order.id))
   const findOrderResponse = page.waitForResponse('**/orders/*')
-  await orderPage.orderSearchButton.click()
+  await orderPage.searchOrderButton.click()
   await findOrderResponse
 
   await foundPage.verifyPage()
@@ -139,9 +139,9 @@ test('4.3 (mock) Find order with response 500', async ({ context }) => {
   })
 
   await orderPage.statusButton.click()
-  await orderPage.orderSearchInput.fill(String(order.id))
+  await orderPage.searchOrderInput.fill(String(order.id))
   const findOrderResponse = page.waitForResponse('**/orders/*')
-  await orderPage.orderSearchButton.click()
+  await orderPage.searchOrderButton.click()
   await findOrderResponse
 
   await notFoundPage.verifyPage()
